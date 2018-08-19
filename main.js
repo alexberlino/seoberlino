@@ -157,8 +157,8 @@ function checkSignedPet(req, res, next) {
 }
 
 function checkSignedIn(req, res, next) {
-    if (req.session.signId) {
-        res.redirect("/buddies");
+    if (req.session.userId) {
+        res.redirect("/");
     } else {
         next();
     }
