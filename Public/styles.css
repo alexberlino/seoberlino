@@ -11,6 +11,14 @@
     position: absolute;
 }
 
+.description2 {
+    margin: 15px;
+    width: 70%;
+    top: 15px;
+    left: 20%;
+    position: absolute;
+}
+
 form {
     margin-top: 50px;
     display: inline;
@@ -18,8 +26,8 @@ form {
 
 .lemonpic {
     display: inline-block;
-    position: relative;
-    left: 20%;
+    position: absolute;
+    left: 40%;
 }
 .regLine {
     display: inline-block;
@@ -73,7 +81,7 @@ h3 {
     font-family: "Orienta", sans-serif;
     letter-spacing: 1px;
     font-style: italic;
-    margin-top: 75px;
+    margin-top: 10px;
 }
 
 #error {
@@ -87,6 +95,8 @@ h3 {
     margin-top: 10%;
     margin-right: 30%;
     border: 1px #ddc963 dotted;
+    z-index: 10;
+    position: relative;
 }
 
 .numbers {
@@ -98,15 +108,18 @@ label {
 }
 
 nav {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    font-size: 15px;
-    text-align: right;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-top: 20px;
+    top: 0;
+    font-size: 13px;
+    text-align: left;
     overflow: hidden;
     position: fixed;
-    top: 0;
     width: 100%;
-    z-index: 200;
+    z-index: 100;
+    text-shadow: -0px 1px 0px #00e6e6, -0px 0px 0px #01cccc,
+        -0px 0px 0px #00bdbd;
 }
 
 nav a:link {
@@ -153,6 +166,10 @@ input {
     margin-left: 30%;
 }
 
+.inputPetition {
+    positon: relative;
+    z-index: 10;
+}
 .passwordNotice {
     left: 29%;
     font-size: 11px;
@@ -199,11 +216,17 @@ footer {
     margin-top: 80px;
 }
 
+span {
+    word-wrap: break-word;
+    display: block;
+    z-index: 10;
+    position: relative;
+}
+
 .canalimages {
     display: in-line;
-    margin-top: 80px;
-    margin-bottom: 80px;
-    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 /* .canal {
     background: url("canal.png") no-repeat;
