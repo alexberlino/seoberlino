@@ -1,0 +1,23 @@
+
+<h3> If you are already registered, you can log in here!</h3>
+
+
+
+
+<form class="regLine" method="POST">
+    <label>Email Address</label>
+    <input type="text" placeholder="your email address" name="emailAddress">
+
+    <label>Password</label>
+    <input type="password" placeholder="your password" name="password" >
+
+
+    <button class="registerSubmit" type="submit">Log in</button>
+
+    {{#if errorMessage}}
+    <p id="error">
+        Error! Please review your input and make sure all fields are completed.
+    </p>
+    {{/if}}
+
+</form>

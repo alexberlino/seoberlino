@@ -19,26 +19,3 @@ module.exports.addToDatabase = function(firstname, surname, signature) {
             console.log(err);
         });
 };
-
-module.exports.getUserByEmail = function(emailAddress) {
-    return db.query(`SELECT id, password FROM users WHERE emailAddress = $1`, [
-        emailAddress
-    ]);
-};
-
-module.exports.addUserToDb = function(
-    firstname,
-    surname,
-    emailAddress,
-    password
-) {
-    return db
-        .query(
-            `INSERT INTO users (firstname, surname, emailAddress, password)
-        VALUES ($1, $2, $3, $4) RETURNING id`,
-            [firstname, surname, emailAddress, password]
-        )
-        .catch(function(err) {
-            console.log(err);
-        });
-};

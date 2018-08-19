@@ -1,0 +1,42 @@
+
+<h3> Berlin canals: Join the campaign for fresh and swimmable waters </h3>
+
+
+
+<div class="registermain">
+
+
+    <form method="POST" class=regLine>
+
+
+
+        <label>First name</label>
+        <input type="text" placeholder="your first name" name="firstName">
+
+        <label>Last name</label>
+        <input type="text" placeholder="your last name" name="surname" >
+
+        <label>Email Address</label>
+        <input type="text" placeholder="your email address" name="emailAddress">
+
+        <label>Password</label>
+        <input type="password" placeholder="your password" name="password" >
+
+        <button class="registerSubmit" type="submit">Sign up</button>
+        <div class="passwordNotice">
+            Please note passwords are stored securely
+            using hashing, salting, and Bcrypt.
+        </div>
+
+
+    </form>
+    <div class="lemonpic">
+    <img src="fresh.jpeg" hight=100px width=250px>
+    </div>
+    {{#if errorMessage}}
+
+    <p id="error">
+        Error! Please review your input and make sure all fields are completed.
+    </p>
+    {{/if}}
+</div>

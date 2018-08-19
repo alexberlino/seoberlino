@@ -1,4 +1,5 @@
 const db = require("./SQL/db.js");
+const { checkPass, hashPass } = require("./Public/hash.js");
 const express = require("express");
 const ca = require("chalk-animation");
 const app = express();
@@ -27,25 +28,105 @@ app.use(
     })
 );
 
-// app.use((req, res, next) => {
-//     if (req.cookies.confirmCookie && req.url == "/") {
-//         ca.karaoke("Already has a Cookie");
-//         res.redirect("/thankyou");
-//     } else {
-//         ca.karaoke("no Cookie spotted");
-//
-//         next();
-//     }
-// });
-//
-// app.use((req, res, next) => {
-//     if (!req.cookies.confirmCookie && req.url == "/buddylist") {
-//         ca.karaoke("No cookie");
-//         res.redirect("/");
-//     } else {
-//         next();
-//     }
-// });
+////////////////////login///////////////////////////
+
+app.get("/login", checkSignedIn, function(req, res) {
+    res.render("login", {
+        layout: "petitionLog"
+    });
+});
+
+// const emailAddress = req.body.emailAddress;
+// let password = req.body.password;
+app.post("/login", (req, res) => {
+    if (req.body.password && req.body.emailAddress) {
+        db.getUserByEmail(req.body.emailAddress)
+            .then(function(result) {
+                console.log(result.rows[0].password);
+                return checkPass(
+                    req.body.password,
+                    result.rows[0].password
+                ).then(doesMatch => {
+                    if (doesMatch) {
+                        console.log("match");
+                        // req.session.userId = result.rows[0].id;
+                        //get signature id by user id
+                        req.session.userId = result.rows[0].id;
+                        res.redirect("/");
+                    } else {
+                        console.log("no match");
+                        console.log(req.body.password, result.rows[0].password);
+                        throw new Error();
+                    }
+                });
+            })
+            .catch(function(e) {
+                console.log("error catch" + e);
+                res.render("login", {
+                    layout: "petitionLog",
+                    errorMessage: true
+                });
+            });
+    } else {
+        console.log("password or email missing");
+        res.render("login", {
+            layout: "petitionLog",
+            errorMessage: true
+        });
+    }
+});
+
+/////////////////login///////////////////////////
+
+/////////////////register///////////////////////////
+
+app.get("/register", checkSignedIn, function(req, res) {
+    res.render("register", {
+        layout: "petitionLog"
+    });
+});
+
+app.post("/register", (req, res) => {
+    if (
+        req.body.firstName &&
+        req.body.surname &&
+        req.body.emailAddress &&
+        req.body.password
+    ) {
+        hashPass(req.body.password)
+            .then(function(pass) {
+                console.log(req.body.password);
+                console.log(pass);
+                return db.addUserToDb(
+                    req.body.firstName,
+                    req.body.surname,
+                    req.body.emailAddress,
+                    pass
+                );
+            })
+            .then(function(result) {
+                req.session.userId = result.rows[0].id;
+                console.log(result.rows[0].id);
+
+                res.redirect("/");
+            })
+            .catch(function() {
+                console.log("error");
+                res.render("register", {
+                    layout: "petitionLog",
+                    errorMessage: true
+                });
+            });
+    } else {
+        console.log("error");
+        res.render("register", {
+            layout: "petitionLog",
+            errorMessage: true
+        });
+    }
+});
+
+/////////////////register///////////////////////////
 
 // app.use(csurf());
 ///!!!!
@@ -57,15 +138,45 @@ app.use(
 //     next();
 // });
 
-const checkSession = (req, res, next) => {
+////////////middleware//////////////////////////////
+
+function checkSession(req, res, next) {
     if (!req.session.checked) {
         res.redirect("/");
     } else {
         next();
     }
-};
+}
 
-app.get("/", function(req, res) {
+function checkSignedPet(req, res, next) {
+    if (req.session.checked) {
+        res.redirect("/thankyou");
+    } else {
+        next();
+    }
+}
+
+function checkSignedIn(req, res, next) {
+    if (req.session.signId) {
+        res.redirect("/buddies");
+    } else {
+        next();
+    }
+}
+
+function checkNotSignedIn(req, res, next) {
+    if (!req.session.userId) {
+        res.redirect("/register");
+    } else {
+        next();
+    }
+}
+
+////////////middleware//////////////////////////////
+
+/////////////////petition///////////////////////////
+
+app.get("/", checkNotSignedIn, checkSignedPet, function(req, res) {
     res.render("main", {
         layout: "petition"
     });
@@ -84,6 +195,8 @@ app.post("/", (req, res) => {
                 res.redirect("/thankyou");
             });
     } else {
+        console.log("error!!!!!!!!!!");
+
         res.render("main", {
             layout: "petition",
             errorMessage: true
@@ -91,7 +204,11 @@ app.post("/", (req, res) => {
     }
 });
 
-app.get("/thankyou", checkSession, (req, res) => {
+/////////////////petition///////////////////////////
+
+/////////////////thankyou///////////////////////////
+
+app.get("/thankyou", checkSession, checkNotSignedIn, (req, res) => {
     // res.cookie("confirmCookie", "done");
     db.getSignatures()
         .then(function(results) {
@@ -113,7 +230,15 @@ app.get("/thankyou", checkSession, (req, res) => {
         });
 });
 
-app.get("/buddylist", (req, res) => {
+/////////////////thankyou///////////////////////////
+
+app.get("/logout", function(req, res) {
+    req.session = null;
+    res.redirect("/login");
+});
+/////////////////signatures///////////////////////////
+
+app.get("/buddylist", checkNotSignedIn, checkSession, (req, res) => {
     db.getSignatures()
         .then(function(results) {
             res.render("buddylist", {
@@ -122,6 +247,32 @@ app.get("/buddylist", (req, res) => {
             });
         })
         .catch(e => console.log(e));
+});
+
+/////////////////signatures///////////////////////////
+
+app.get("/about", function(req, res) {
+    res.render("about", {
+        layout: "petition"
+    });
+});
+
+app.get("/contact", function(req, res) {
+    res.render("contact", {
+        layout: "petition"
+    });
+});
+
+app.get("/aboutus", function(req, res) {
+    res.render("about", {
+        layout: "petitionLog"
+    });
+});
+
+app.get("/contactus", function(req, res) {
+    res.render("contact", {
+        layout: "petitionLog"
+    });
 });
 
 // listening

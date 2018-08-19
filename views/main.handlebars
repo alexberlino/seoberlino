@@ -1,41 +1,63 @@
 
 <div class ="description">
-    <h2> Make the Berlin canals swimmable again!! </h2>
+    <h3> Make the Berlin canals swimmable again!! </h3>
 
     <p>
-        only a few years ago during the summer, Berliners would use the city's canals
+        Only a few years ago during the summer, Berliners would use the city's canals
         to have a swim. But in the last few years, this has become impossible.
     </p>
 
-    <img src="canal.png" hight=200px width=350px>
-    {{#if errorMessage}}
 
-    <p id="error">
-Please review your input and check all fields are completed.
-    </p>
-    {{/if}}
+    <div class="canalimages">
+
+        <img src="canal.png" height=200px width=300px>
+        <img src="canalswimming.jpg" height=200px width=300px >
 
 
-        <form method="POST" action="/">
+    </div>
 
+    <form method="POST">
 
-
-            <input name="firstname" type="text" placeholder="your first name" >
-            <input name="surname" type="text" placeholder="your surname">
+        <div class="namesPet">
 
 
 
-            <input type="hidden" name ="signature" id="sig">
-            <p>please sign below</p>
-            <canvas id="canvas" width="280" height="100"></canvas>
+            <input class= "inputPetition" name="firstname" type="text" placeholder="your first name" >
+            <input class= "inputPetition" name="surname" type="text" placeholder="your surname">
+
+        </div>
+        <div class="signPet">
+
+            <input class= "inputPetition" type="hidden" name ="signature" id="sig">
+            <p class="instructions">please enter your name and surname and sign below</p>
+            <canvas class= "inputPetition" id="canvas" width="280" height="100"></canvas>
 
 
             <button> Submit </button>
+        </div>
+
 
 
 
     </form>
+    {{#if errorMessage}}
+    <p id="error">
+        Error! Please review your input and make sure all fields are completed.
+    </p>
+    </div>
+
+    {{/if}}
 </div>
+
+
+
+
+
+
+
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="script.js"></script>

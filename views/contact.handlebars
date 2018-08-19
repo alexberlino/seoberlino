@@ -1,0 +1,42 @@
+
+<div class ="description ">
+    <h3> Get in touch </h3>
+
+
+    <div class="contact">
+
+
+        <form method="post">
+
+            <input type="text"  id="name" placeholder="Name" required/>
+
+            <input type="email" placeholder="Email" required/>
+
+            <textarea rows="10" cols="100" placeholder="Message" required></textarea>
+
+            <button>Send it!</button>
+        </div>
+        <div>
+
+            {{#if errorMessage}}
+            <p id="error">
+                Error! Please review your input and make sure all fields are completed.
+            </p>
+
+
+            {{/if}}
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="script.js"></script>
