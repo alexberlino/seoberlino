@@ -102,6 +102,11 @@ nav {
     padding-bottom: 20px;
     font-size: 15px;
     text-align: right;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
 }
 
 nav a:link {
@@ -186,18 +191,19 @@ footer {
     position: relative;
 }
 
-.canalimages {
-    display: in-line;
-    margin-top: 80px;
-    margin-bottom: 80px;
-}
-
 .registermain {
     margin-top: 50px;
 }
 
 .contact {
     margin-top: 80px;
+}
+
+.canalimages {
+    display: in-line;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    width: 100%;
 }
 /* .canal {
     background: url("canal.png") no-repeat;
