@@ -251,25 +251,33 @@ app.get("/buddylist", checkNotSignedIn, checkSession, (req, res) => {
 
 /////////////////signatures///////////////////////////
 
-app.get("/about", function(req, res) {
+app.get("/about", checkNotSignedIn, function(req, res) {
     res.render("about", {
         layout: "petition"
     });
 });
 
-app.get("/contact", function(req, res) {
+app.get("/contact", checkNotSignedIn, function(req, res) {
     res.render("contact", {
         layout: "petition"
     });
 });
 
-app.get("/aboutus", function(req, res) {
+app.post("/contact", checkNotSignedIn, function(req, res) {
+    console.log("yes");
+    res.render("contact", {
+        layout: "petition",
+        thanksMessage: true
+    });
+});
+
+app.get("/aboutus", checkSignedIn, function(req, res) {
     res.render("about", {
         layout: "petitionLog"
     });
 });
 
-app.get("/contactus", function(req, res) {
+app.get("/contactus", checkSignedIn, function(req, res) {
     res.render("contact", {
         layout: "petitionLog"
     });

@@ -10,7 +10,7 @@
 
             <input type="text"  id="name" placeholder="Name" required>
 
-            <input type="email" placeholder="Email" required>
+            <input type="email" placeholder="Email" required/>
 
             <textarea rows="10" cols="70" placeholder="Message" required></textarea>
 
@@ -22,6 +22,12 @@
             <p id="error">
                 Error! Please review your input and make sure all fields are completed.
             </p>
+
+            {{#if thanksMessage}}
+            <p id="thanks">
+                Thank you!
+            </p>
+            {{/if}}
 
 
             {{/if}}
