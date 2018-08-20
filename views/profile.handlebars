@@ -1,0 +1,31 @@
+
+<div class="registermain">
+
+    <h3> Tell us about you!</h3>
+
+    <form method="POST" class=regLine>
+
+
+
+        <label>age</label>
+        <input type="number" placeholder="your age" name="age">
+
+        <label>city</label>
+        <input type="text" placeholder="your city" name="city" >
+
+        <label>personal website</label>
+        <input type="text" placeholder="your website" name="personalWeb">
+
+
+
+        <button class="profileSubmit" type="submit">CONTINUE</button>
+
+</form>
+
+{{#if errorMessage}}
+
+<p id="error">
+    Error!
+</p>
+{{/if}}
+</div>

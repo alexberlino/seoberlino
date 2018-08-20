@@ -15,10 +15,10 @@ module.exports.checkPass = (pass, hash) => {
     return compare(pass, hash);
 };
 
-exports
-    .hashPass("patrick")
-    .then(hash => {
-        console.log(hash);
-        return exports.checkPass("patrick", hash);
-    })
-    .then(doesMatch => console.log(doesMatch));
+// exports
+//     .hashPass("patrick")
+//     .then(hash => {
+//         console.log(hash);
+//         return exports.checkPass("patrick", hash);
+//     })
+//     .then(doesMatch => console.log(doesMatch));

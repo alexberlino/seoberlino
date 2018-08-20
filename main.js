@@ -27,6 +27,41 @@ app.use(
         maxAge: 1000 * 60 * 60 * 24 * 14
     })
 );
+////////////////////profile///////////////////////////
+
+app.get("/profile", (req, res) => {
+    res.render("profile", {
+        layout: "petitionLog"
+    });
+});
+
+app.post("/profile", (req, res) => {
+    console.log(
+        req.session.userId,
+        req.body.age,
+        req.body.city,
+        req.body.personalWeb
+    );
+    return db
+        .addProfileToDb(
+            req.session.userId,
+            req.body.age,
+            req.body.city,
+            req.body.personalWeb
+        )
+        .then(function() {
+            res.redirect("/");
+        })
+        .catch(function() {
+            console.log("error");
+            res.render("profile", {
+                layout: "petitionLog",
+                errorMessage: true
+            });
+        });
+});
+
+////////////////////profile///////////////////////////
 
 ////////////////////login///////////////////////////
 
@@ -87,43 +122,26 @@ app.get("/register", checkSignedIn, function(req, res) {
 });
 
 app.post("/register", (req, res) => {
-    if (
-        req.body.firstName &&
-        req.body.surname &&
-        req.body.emailAddress &&
-        req.body.password
-    ) {
-        hashPass(req.body.password)
-            .then(function(pass) {
-                console.log(req.body.password);
-                console.log(pass);
-                return db.addUserToDb(
-                    req.body.firstName,
-                    req.body.surname,
-                    req.body.emailAddress,
-                    pass
-                );
-            })
-            .then(function(result) {
-                req.session.userId = result.rows[0].id;
-                console.log(result.rows[0].id);
-
-                res.redirect("/");
-            })
-            .catch(function() {
-                console.log("error");
-                res.render("register", {
-                    layout: "petitionLog",
-                    errorMessage: true
-                });
+    hashPass(req.body.password)
+        .then(pass => {
+            return db.addUserToDb(
+                req.body.firstName,
+                req.body.surname,
+                req.body.emailAddress,
+                pass
+            );
+        })
+        .then(result => {
+            req.session.userId = result.rows[0].id;
+            res.redirect("/profile");
+        })
+        .catch(function() {
+            console.log("error");
+            res.render("register", {
+                layout: "petitionLog",
+                errorMessage: true
             });
-    } else {
-        console.log("error");
-        res.render("register", {
-            layout: "petitionLog",
-            errorMessage: true
         });
-    }
 });
 
 /////////////////register///////////////////////////
@@ -187,21 +205,18 @@ app.post("/", (req, res) => {
     const surname = req.body.surname;
     const signature = req.body.signature;
 
-    if (firstname && surname && signature) {
-        return db
-            .addToDatabase(firstname, surname, signature)
-            .then(function(results) {
-                req.session.checked = results.rows[0].id;
-                res.redirect("/thankyou");
+    return db
+        .addToDatabase(req.session.userId, firstname, surname, signature)
+        .then(function(results) {
+            req.session.checked = results.rows[0].id;
+            res.redirect("/thankyou");
+        })
+        .catch(function() {
+            res.render("main", {
+                layout: "petition",
+                errorMessage: true
             });
-    } else {
-        console.log("error!!!!!!!!!!");
-
-        res.render("main", {
-            layout: "petition",
-            errorMessage: true
         });
-    }
 });
 
 /////////////////petition///////////////////////////
@@ -239,9 +254,22 @@ app.get("/logout", function(req, res) {
 /////////////////signatures///////////////////////////
 
 app.get("/buddylist", checkNotSignedIn, checkSession, (req, res) => {
-    db.getSignatures()
+    db.getSignatures2()
         .then(function(results) {
+            console.log(results);
             res.render("buddylist", {
+                layout: "petition",
+                signs: results
+            });
+        })
+        .catch(e => console.log(e));
+});
+
+app.get("/buddylist/:city", (req, res) => {
+    db.getSignatures3(req.params.city)
+        .then(function(results) {
+            console.log(results);
+            res.render("buddylist2", {
                 layout: "petition",
                 signs: results
             });

@@ -15,28 +15,22 @@
             <textarea rows="10" cols="70" placeholder="Message" required></textarea>
 
             <button>Send it!</button>
-        </div>
-        <div>
-
-            {{#if errorMessage}}
-            <p id="error">
-                Error! Please review your input and make sure all fields are completed.
-            </p>
-
-
-            {{/if}}
-        </div>
+        </form>
     </div>
+    <div>
+
+        {{#if thanksMessage}}
+        <p id="error">
+            Error! Please review your input and make sure all fields are completed.
+        </p>
+
+                {{/if}}
+        {{#if errorMessage}}
+        <p id="error">
+            Error! Please review your input and make sure all fields are completed.
+        </p>
 
 
-
-
-
-
-
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="script.js"></script>
+        {{/if}}
+    </div>
+</div>
