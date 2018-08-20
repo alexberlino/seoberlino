@@ -6,7 +6,7 @@
 .description {
     margin: 15px;
     width: 50%;
-    top: 15px;
+    top: 0px;
     left: 30%;
     position: absolute;
 }
@@ -14,7 +14,7 @@
 .description2 {
     margin: 15px;
     width: 70%;
-    top: 15px;
+    top: 0px;
     left: 20%;
     position: absolute;
 }
@@ -72,16 +72,24 @@ h6 {
 }
 
 h3 {
+    z-index: 30;
+    position: relative;
     text-align: center;
-    margin: 1em 0 0.5em 0;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 0px;
     color: #343434;
     font-size: 22px;
-    line-height: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-weight: normal;
     font-family: "Orienta", sans-serif;
     letter-spacing: 1px;
     font-style: italic;
-    margin-top: 10px;
+    margin-top: 80px;
 }
 
 #error {
@@ -108,9 +116,9 @@ label {
 }
 
 nav {
+    background-color: rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
     padding: 10px;
-    padding-top: 20px;
     top: 0;
     left: 10px;
     font-size: 13px;
