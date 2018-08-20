@@ -1,5 +1,5 @@
 const db = require("./SQL/db.js");
-const { checkPass, hashPass } = require("./Public/hash.js");
+const { checkPass, hashPass, capital } = require("./Public/hash.js");
 const express = require("express");
 const ca = require("chalk-animation");
 const app = express();
@@ -271,7 +271,8 @@ app.get("/buddylist/:city", (req, res) => {
             console.log(results);
             res.render("buddylist2", {
                 layout: "petition",
-                signs: results
+                signs: results,
+                city: capital(req.params.city)
             });
         })
         .catch(e => console.log(e));

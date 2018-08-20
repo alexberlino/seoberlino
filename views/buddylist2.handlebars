@@ -1,14 +1,15 @@
 
 <div class ="description">
-        {{#signs}}
+
     <h3> {{city}} Hall of Fame! </h3>
+
 
 
     Thank you to all of you from {{city}} who want to make the waters of Berlin fresh and clean to
     swim in!
     <div class="list" >
-
-        <li><a href="https//:www.{{website}}" target="_blank">{{firstname}} {{surname}}</a> {{age}}  {{city}}</li>
+{{#signs}}
+        <li><a href="{{website}}" target="_blank">{{firstname}} {{surname}}</a> {{age}}  {{city}}</li>
         {{/signs}}
     </div>
 </div>

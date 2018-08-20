@@ -15,6 +15,9 @@ module.exports.checkPass = (pass, hash) => {
     return compare(pass, hash);
 };
 
+module.exports.capital = function(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+};
 // exports
 //     .hashPass("patrick")
 //     .then(hash => {
