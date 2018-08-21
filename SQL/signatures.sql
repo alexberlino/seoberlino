@@ -1,12 +1,8 @@
 DROP TABLE IF EXISTS signatures;
 CREATE TABLE signatures (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER,
-    firstname VARCHAR(15) NOT NULL,
-    surname VARCHAR(15) NOT NULL,
+    user_id INTEGER NOT NULL REFERENCES users(id),
     signature TEXT NOT NULL
-
-
 );
 
 

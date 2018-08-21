@@ -1,0 +1,46 @@
+
+<div class="registermain">
+
+    <h3> Edit your profile</h3>
+    {{#user}}
+
+
+
+    <form method="POST" class=regLine>
+        <label>change first name</label>
+        <input value="{{firstname}}" type="text" name="firstname">
+
+        <label>change last name</label>
+        <input value="{{surname}}" type="text" name="surname" >
+
+        <label>change email</label>
+        <input value="{{emailaddress}}" type="email" name="emailaddress">
+
+        <label>enter new password</label>
+        <input type="password" name="password">
+
+        <label>change age</label>
+        <input value="{{age}}" type="number" name="age">
+
+        <label>change city</label>
+        <input value="{{city}}" type="text" name="city" >
+
+        <label>change your website</label>
+        <input value="{{personalweb}}" type="text" name="personalweb" />
+
+        {{/user}}
+
+
+        <button class="profileSubmit" type="submit">UPDATE</button>
+
+</form>
+
+
+
+{{#if errorMessage}}
+
+<p id="error">
+    Error!
+</p>
+{{/if}}
+</div>

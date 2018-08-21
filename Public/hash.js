@@ -18,10 +18,3 @@ module.exports.checkPass = (pass, hash) => {
 module.exports.capital = function(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
-// exports
-//     .hashPass("patrick")
-//     .then(hash => {
-//         console.log(hash);
-//         return exports.checkPass("patrick", hash);
-//     })
-//     .then(doesMatch => console.log(doesMatch));

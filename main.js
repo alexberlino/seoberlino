@@ -31,23 +31,17 @@ app.use(
 
 app.get("/profile", (req, res) => {
     res.render("profile", {
-        layout: "petitionLog"
+        layout: "petition"
     });
 });
 
 app.post("/profile", (req, res) => {
-    console.log(
-        req.session.userId,
-        req.body.age,
-        req.body.city,
-        req.body.personalWeb
-    );
     return db
         .addProfileToDb(
             req.session.userId,
             req.body.age,
             req.body.city,
-            req.body.personalWeb
+            req.body.personalweb
         )
         .then(function() {
             res.redirect("/");
@@ -63,6 +57,76 @@ app.post("/profile", (req, res) => {
 
 ////////////////////profile///////////////////////////
 
+app.get("/profile/edit", (req, res) => {
+    db.infosForEdit(req.session.userId)
+
+        .then(function(results) {
+            console.log(results);
+            res.render("profile-edit", {
+                layout: "petition",
+                user: results
+            });
+        })
+        .catch(e => console.log(e));
+});
+app.post("/profile/edit", (req, res) => {
+    if (req.body.password.length > 0) {
+        hashPass(req.body.password)
+            .then(pass => {
+                return db.UpdateUserEditPwd(
+                    req.body.firstname,
+                    req.body.surname,
+                    req.body.emailaddress,
+                    pass,
+                    req.session.userId
+                );
+            })
+            .catch(function(e) {
+                console.log(e);
+            });
+    } else {
+        return db.UpdateUserEditNoPwd(
+            req.body.firstname,
+            req.body.surname,
+            req.body.emailaddress,
+            req.session.userId
+        );
+    }
+    return db
+        .UpdateProfile(
+            req.body.age,
+            req.body.city,
+            req.body.personalweb,
+            req.session.userId
+        )
+        .then(function() {
+            res.redirect("/thankyou");
+        })
+        .catch(function(e) {
+            console.log(e);
+        });
+});
+
+app.post("/profile", (req, res) => {
+    return db
+        .addProfileToDb(
+            req.session.userId,
+            req.body.age,
+            req.body.city,
+            req.body.personalweb
+        )
+        .then(function() {
+            res.redirect("/");
+        })
+        .catch(function() {
+            console.log("error");
+            res.render("profile", {
+                layout: "petitionLog",
+                errorMessage: true
+            });
+        });
+});
+
 ////////////////////login///////////////////////////
 
 app.get("/login", checkSignedIn, function(req, res) {
@@ -71,44 +135,49 @@ app.get("/login", checkSignedIn, function(req, res) {
     });
 });
 
-// const emailAddress = req.body.emailAddress;
+// const emailaddress = req.body.emailaddress;
 // let password = req.body.password;
 app.post("/login", (req, res) => {
-    if (req.body.password && req.body.emailAddress) {
-        db.getUserByEmail(req.body.emailAddress)
-            .then(function(result) {
-                console.log(result.rows[0].password);
-                return checkPass(
-                    req.body.password,
-                    result.rows[0].password
-                ).then(doesMatch => {
+    db.getUserForLogin(req.body.emailaddress)
+        .then(function(result) {
+            return checkPass(req.body.password, result.rows[0].password)
+                .then(function(doesMatch) {
                     if (doesMatch) {
-                        console.log("match");
-                        // req.session.userId = result.rows[0].id;
-                        //get signature id by user id
+                        console.log(
+                            "USER ID:" + result.rows[0].id,
+                            "FIRSTNAME:" + result.rows[0].firstname,
+                            "SURNAME:" + result.rows[0].surname
+                        );
                         req.session.userId = result.rows[0].id;
-                        res.redirect("/");
-                    } else {
-                        console.log("no match");
-                        console.log(req.body.password, result.rows[0].password);
-                        throw new Error();
+                        req.session.firstname = result.rows[0].firstname;
+                        req.session.surname = result.rows[0].surname;
                     }
+                })
+                .then(function() {
+                    return db
+                        .checkSign(req.session.userId)
+                        .then(function(response) {
+                            console.log("sign:", response);
+                            if (response == undefined) {
+                                res.redirect("/");
+                            } else {
+                                req.session.checked = result.rows[0].id;
+                                res.redirect("/thankyou");
+                            }
+                        })
+                        .catch(function(e) {
+                            console.log("error catch" + e);
+                            res.redirect("/");
+                        });
                 });
-            })
-            .catch(function(e) {
-                console.log("error catch" + e);
-                res.render("login", {
-                    layout: "petitionLog",
-                    errorMessage: true
-                });
+        })
+        .catch(function(e) {
+            console.log("error catch" + e);
+            res.render("login", {
+                layout: "petitionLog",
+                errorMessage: true
             });
-    } else {
-        console.log("password or email missing");
-        res.render("login", {
-            layout: "petitionLog",
-            errorMessage: true
         });
-    }
 });
 
 /////////////////login///////////////////////////
@@ -125,14 +194,25 @@ app.post("/register", (req, res) => {
     hashPass(req.body.password)
         .then(pass => {
             return db.addUserToDb(
-                req.body.firstName,
+                req.body.firstname,
                 req.body.surname,
-                req.body.emailAddress,
+                req.body.emailaddress,
                 pass
             );
         })
         .then(result => {
-            req.session.userId = result.rows[0].id;
+            return (
+                (req.session.userId = result.rows[0].id),
+                (req.session.firstname = req.body.firstname),
+                (req.session.surname = req.body.surname)
+            );
+        })
+        .then(function() {
+            console.log(
+                req.session.userId,
+                req.session.firstname,
+                req.session.surname
+            );
             res.redirect("/profile");
         })
         .catch(function() {
@@ -201,12 +281,19 @@ app.get("/", checkNotSignedIn, checkSignedPet, function(req, res) {
 });
 
 app.post("/", (req, res) => {
-    const firstname = req.body.firstname;
-    const surname = req.body.surname;
-    const signature = req.body.signature;
-
+    console.log(
+        req.session.userId,
+        req.session.firstname,
+        req.session.surname,
+        req.body.signature
+    );
     return db
-        .addToDatabase(req.session.userId, firstname, surname, signature)
+        .addToDatabase(
+            req.session.userId,
+            req.session.firstname,
+            req.session.surname,
+            req.body.signature
+        )
         .then(function(results) {
             req.session.checked = results.rows[0].id;
             res.redirect("/thankyou");
@@ -225,19 +312,17 @@ app.post("/", (req, res) => {
 
 app.get("/thankyou", checkSession, checkNotSignedIn, (req, res) => {
     // res.cookie("confirmCookie", "done");
-    db.getSignatures()
-        .then(function(results) {
-            let sign = 0;
-            for (let i = 0; i < results.length; i++) {
-                if (results[i].id == req.session.checked) {
-                    sign = results[i].signature;
-                }
-            }
 
-            res.render("thankyou", {
-                layout: "petition",
-                numberSign: results.length,
-                userSign: sign
+    db.getSignatures(req.session.userId)
+        .then(function(results) {
+            results[0].id == req.session.checked;
+            const sign = results[0].signature;
+            db.getAllSignatures().then(function(results) {
+                res.render("thankyou", {
+                    layout: "petition",
+                    numberSign: results.length,
+                    userSign: sign
+                });
             });
         })
         .catch(function(e) {
