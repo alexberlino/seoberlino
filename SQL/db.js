@@ -19,6 +19,18 @@ module.exports.getAllSignatures = function() {
     });
 };
 
+module.exports.deleteSign = function(user_id) {
+    return db
+        .query(
+            `DELETE FROM signatures
+            WHERE user_id=$1;`,
+            [user_id]
+        )
+        .catch(function(err) {
+            console.log("error deleting signature", err);
+        });
+};
+
 module.exports.getSignatures2 = function() {
     return db
         .query(
@@ -185,7 +197,7 @@ module.exports.UpdateProfile = function(user_id, age, city, personalweb) {
             `INSERT INTO profile (user_id, age, city, personalweb)
 VALUES ($1, $2, $3, $4)
 ON CONFLICT (user_id)
-DO UPDATE SET age = $1, city = $2, personalWeb = $3;`,
+DO UPDATE SET age = $2, city = $3, personalWeb = $4;`,
             [user_id, age || null, city || null, personalweb || null]
         )
         .catch(function(err) {

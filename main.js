@@ -341,6 +341,14 @@ app.get("/thankyou", checkSession, checkNotSignedIn, (req, res) => {
         });
 });
 
+app.post("/thankyou", (req, res) => {
+    console.log(req.session.userdId);
+    db.deleteSign(req.session.userId).then(function() {
+        req.session.checked = req.session.unchecked;
+        res.redirect("/");
+    });
+});
+
 /////////////////thankyou///////////////////////////
 
 app.get("/logout", function(req, res) {
