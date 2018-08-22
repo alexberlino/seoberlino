@@ -7,9 +7,22 @@
 
     Thank you to all of you from {{city}} who want to make the waters of Berlin fresh and clean to
     swim in!
-    <div class="list" >
-{{#signs}}
-        <li><a href="{{website}}" target="_blank">{{firstname}} {{surname}}</a> {{age}}  {{city}}</li>
-        {{/signs}}
-    </div>
+
+
+
+<div class="list" >
+    {{#signs}}
+    <li> {{#if website}}<a href="{{website}}" target="_blank">{{firstname}} {{surname}}</a>,
+        {{else}}
+         {{firstname}} {{surname}},
+         {{/if}}
+
+
+    {{#if age}} {{age}},  {{/if}}     {{#if city}} {{city}}{{/if}}</li>
+    {{/signs}}
 </div>
+
+
+<form action="/buddylist" class="back>
+    <input type="submit" value="Back to the whole list" />
+</form>

@@ -99,9 +99,7 @@ h3 {
 }
 
 .list {
-    margin-left: 10%;
     margin-top: 10%;
-    margin-right: 30%;
     border: 1px #ddc963 dotted;
     z-index: 10;
     position: relative;
@@ -260,12 +258,27 @@ span {
     position: relative;
 }
 
+.back {
+    margin-top: 30px;
+    background-color: darkgrey;
+    color: black;
+    margin-left: 50%;
+}
 .canalimages {
     display: in-line;
     margin-top: 40px;
     margin-bottom: 40px;
 }
 
+.deleteSign {
+    background: rgba(0, 0, 0, 0);
+    font-size: 16px;
+    border: 0px;
+}
+
+.deleteSign:hover {
+    color: #44929f;
+}
 /* .canal {
     background: url("canal.png") no-repeat;
     display: inline-block;

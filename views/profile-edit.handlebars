@@ -20,13 +20,13 @@
         <input type="password" name="password">
 
         <label>change age</label>
-        <input value="{{age}}" type="number" name="age">
+        <input value="{{#if age}}{{age}}{{/if}}" type="number" name="age">
 
         <label>change city</label>
-        <input value="{{city}}" type="text" name="city" >
+        <input value="{{#if city}}{{city}}{{/if}}" type="text" name="city" >
 
         <label>change your website</label>
-        <input value="{{personalweb}}" type="text" name="personalweb" />
+        <input value="{{#if personalweb}}{{personalweb}}{{/if}}" type="text" name="personalweb" />
 
         {{/user}}
 

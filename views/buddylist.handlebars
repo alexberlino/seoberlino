@@ -7,9 +7,30 @@
     swim in!
     <div class="list" >
         {{#signs}}
-        <li><a href="{{website}}" target="_blank">{{firstname}} {{surname}}</a> {{age}}  <a href="buddylist/{{city}}">{{city}}</a></li>
+        <li> {{#if website}}<a href="{{website}}" target="_blank">{{firstname}} {{surname}}</a>,
+
+            {{else}}
+             {{firstname}} {{surname}},
+
+             {{/if}}
+{{#if age}}
+     {{age}},
+
+
+
+{{else}} No Age given,
+
+ {{/if}}
+
+{{#if city}}
+
+          <a href="buddylist/{{city}}">{{city}}</a>  {{else}} No city given  {{/if}}
+
+    </li>
         {{/signs}}
     </div>
+
+
 
 <br><br>
 <br><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. <br>

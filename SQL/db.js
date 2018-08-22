@@ -1,6 +1,9 @@
 var spicedPg = require("spiced-pg");
 
-var db = spicedPg("postgres:postgres:password@localhost:5432/petition");
+var db = spicedPg(
+    process.env.DATABASE_URL ||
+        "postgres:postgres:password@localhost:5432/petition"
+);
 
 module.exports.getSignatures = function(user_id) {
     return db
@@ -19,11 +22,15 @@ module.exports.getAllSignatures = function() {
 module.exports.getSignatures2 = function() {
     return db
         .query(
-            `SELECT signatures.firstname AS firstname, profile.personalWeb AS website, signatures.surname AS surname, profile.age AS age, profile.city AS city
+            `SELECT signatures.id AS id, users.firstname AS firstname,
+            profile.personalweb AS website, users.surname AS surname,
+            profile.age AS age, profile.city AS city
             FROM signatures
-            JOIN profile
-            ON signatures.user_id = profile.user_id
-`
+                 JOIN users
+                    ON signatures.user_id = users.id
+                 FULL OUTER JOIN profile
+                    ON signatures.user_id= profile.user_id
+                    WHERE signatures.id IS NOT NULL`
         )
         .then(results => {
             return results.rows;
@@ -33,10 +40,14 @@ module.exports.getSignatures2 = function() {
 module.exports.getSignatures3 = function(city) {
     return db
         .query(
-            `SELECT signatures.firstname AS firstname, profile.personalWeb AS website, signatures.surname AS surname, profile.age AS age, profile.city AS city
+            `SELECT signatures.id AS id, users.firstname AS firstname,
+            profile.personalweb AS website, users.surname AS surname,
+            profile.age AS age, profile.city AS city
             FROM signatures
-            JOIN profile
-            ON signatures.user_id = profile.user_id
+                 JOIN users
+                    ON signatures.user_id = users.id
+                 JOIN profile
+                    ON signatures.user_id= profile.user_id
 
             WHERE city = $1`,
             [city]
@@ -47,17 +58,12 @@ module.exports.getSignatures3 = function(city) {
         });
 };
 
-module.exports.addToDatabase = function(
-    user_id,
-    firstname,
-    surname,
-    signature
-) {
+module.exports.addToDatabase = function(user_id, signature) {
     return db
         .query(
-            `INSERT INTO signatures (user_id, firstname, surname, signature)
-        VALUES ($1, $2, $3, $4) RETURNING id`,
-            [user_id, firstname, surname, signature]
+            `INSERT INTO signatures (user_id, signature)
+        VALUES ($1, $2) RETURNING id`,
+            [user_id, signature]
         )
         .catch(function(err) {
             console.log(err);
@@ -96,7 +102,7 @@ module.exports.infosForEdit = function(user_id) {
         .query(
             `SELECT users.firstname AS firstname, users.surname AS surname,
             users.emailaddress AS emailaddress, profile.age AS age,
-            profile.city AS city, profile.personalWeb AS personalWeb
+            profile.city AS city, profile.personalweb AS personalweb
             FROM profile
             JOIN users
             ON profile.user_id = users.id
@@ -131,7 +137,7 @@ module.exports.addProfileToDb = function(user_id, age, city, personalWeb) {
         .query(
             `INSERT INTO profile (user_id, age, city, personalWeb)
         VALUES ($1, $2, $3, $4) RETURNING id`,
-            [user_id, age, city, personalWeb]
+            [user_id, age || null, city || null, personalWeb || null]
         )
         .then(function() {})
         .catch(function(err) {
@@ -147,9 +153,8 @@ module.exports.UpdateUserEditNoPwd = function(
 ) {
     return db
         .query(
-            `UPDATE users SET firstname = "$1", surname = "$2", emailaddress = "$3"
-            WHERE id = "$4"
-        VALUES ($1, $2, $3, $4)`,
+            `UPDATE users SET firstname = $1, surname = $2, emailaddress = $3
+            WHERE id = $4`,
             [firstname, surname, emailaddress, id]
         )
         .catch(function(err) {
@@ -165,25 +170,51 @@ module.exports.UpdateUserEditPwd = function(
 ) {
     return db
         .query(
-            `UPDATE users SET  firstname = "$1", surname = "$2", emailaddress = "$3", password="$4"
-            WHERE id = "$5"
-        VALUES ($1, $2, $3, $4, $5)`,
+            `UPDATE users
+            SET  firstname = $1, surname = $2, emailaddress = $3, password=$4
+            WHERE id = $5`,
             [firstname, surname, emailaddress, password, id]
         )
         .catch(function(err) {
             console.log(err);
         });
 };
-module.exports.UpdateProfile = function(age, city, personalWeb, user_id) {
+module.exports.UpdateProfile = function(user_id, age, city, personalweb) {
     return db
         .query(
-            `INSERT INTO profile (name, city, personalWeb)
-VALUES ($1, $2, $3)
-ON CONFLICT ($4)
-DO UPDATE SET name = "$1", city = "$2", personalWeb = "$3";`,
-            [name, city, personalWeb, user_id]
+            `INSERT INTO profile (user_id, age, city, personalweb)
+VALUES ($1, $2, $3, $4)
+ON CONFLICT (user_id)
+DO UPDATE SET age = $1, city = $2, personalWeb = $3;`,
+            [user_id, age || null, city || null, personalweb || null]
         )
         .catch(function(err) {
             console.log(err);
+        });
+};
+
+module.exports.infosForEdit = function(user_id) {
+    return db
+        .query(
+            `SELECT users.firstname AS firstname, users.surname AS surname,
+            users.emailaddress AS emailaddress, profile.age AS age,
+            profile.city AS city, profile.personalweb AS personalweb
+            FROM users
+            FULL  JOIN profile
+            ON profile.user_id = users.id
+            WHERE profile.user_id = $1
+            `,
+            [user_id]
+        )
+        .then(results => {
+            return results.rows[0];
+        });
+};
+
+module.exports.infosForEditNoProf = function(user_id) {
+    return db
+        .query(`SELECT * FROM users WHERE id = $1`, [user_id])
+        .then(results => {
+            return results.rows[0];
         });
 };
