@@ -5,6 +5,7 @@ const ca = require("chalk-animation");
 const app = express();
 app.use(express.static("./Public"));
 app.use(express.static("./SQL"));
+
 // const csurf = require("csurf");
 var cookieSession = require("cookie-session");
 
@@ -116,6 +117,42 @@ app.post("/profile/edit", (req, res) => {
         });
 });
 
+app.post("/profile", (req, res) => {
+    console.log(
+        req.session.userId,
+        req.body.age,
+        req.body.city,
+        req.body.personalweb
+    );
+    return db
+        .addProfileToDb(
+            req.session.userId,
+            req.body.age,
+            req.body.city,
+            req.body.personalweb
+        )
+        .then(function(result) {
+            console.log(result);
+        })
+        .catch(function() {
+            console.log("error");
+            res.render("profile", {
+                layout: "petitionLog",
+                errorMessage: true
+            });
+        });
+});
+
+////////////////////login///////////////////////////
+
+app.get("/login", checkSignedIn, function(req, res) {
+    res.render("login", {
+        layout: "petitionLog"
+    });
+});
+
+// const emailaddress = req.body.emailaddress;
+// let password = req.body.password;
 app.post("/login", (req, res) => {
     db.getUserForLogin(req.body.emailaddress)
         .then(function(result) {
@@ -155,18 +192,6 @@ app.post("/login", (req, res) => {
             });
         });
 });
-
-////////////////////login///////////////////////////
-
-app.get("/login", checkSignedIn, function(req, res) {
-    res.render("login", {
-        layout: "petitionLog"
-    });
-});
-
-// const emailaddress = req.body.emailaddress;
-// let password = req.body.password;
-
 /////////////////login///////////////////////////
 
 /////////////////register///////////////////////////

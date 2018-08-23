@@ -5,21 +5,23 @@
 
     background: none;
 }
-    html {
-     background: url("canalmain.jpg") no-repeat center center fixed;
-     -webkit-background-size: cover;
-     -moz-background-size: cover;
-     -o-background-size: cover;
-     background-size: cover;
+html {
+    background: url("canalmain.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0.95;
 
-   }
+}
 
 .registermain {
 
     background-color: rgba(255,255,255, 0.8);
-    width: 60%;
+    width: 65%;
     margin-left: 20%;
     margin-top: 10%;
+    margin-bottom: 10%;
     color: white;
     postiion: relative;
 
@@ -27,10 +29,12 @@
 
 .titleReg {
 
-    font-size: 40px;
+    font-size: 35px;
     font-family: arial;
     margin-bottom: 5px;
 }
+
+
 
 
 </style>
@@ -43,37 +47,42 @@
 
 
     <h3 class="titleReg"> BERLIN CANALS: <br>
-        Join the campaign for fresh and swimmable waters </h3>
+        JOIN THE CAMPAIGN FOR FRESH AND SWIMMABLE WATERS </h3>
 
-    <form method="POST" class=regLine>
+        <form method="POST" class=regLine>
 
 
+            <div id="firstcolumn">
 
-        <label>First name</label>
-        <input type="text" placeholder="your first name" name="firstname"required>
+                <label>First name</label>
+                <input type="text" placeholder="your first name" name="firstname"required>
 
-        <label>Last name</label>
-        <input type="text" placeholder="your last name" name="surname"required >
+                <label>Last name</label>
+                <input type="text" placeholder="your last name" name="surname"required >
 
-        <label>Email</label>
-        <input type="email" placeholder="your email" name="emailaddress"required>
 
-        <label>Password</label>
-        <input type="password" placeholder="your password" name="password"required>
+            </div>
+            <div id="secondcolumn">
+                <label>Email</label>
+                <input type="email" placeholder="your email" name="emailaddress"required>
 
-        <button class="registerSubmit" type="submit">Sign up</button>
-        <div class="passwordNotice">
-            Please note passwords are stored securely
-            using hashing, salting, and Bcrypt.
-        </div>
+                <label>Password</label>
+                <input type="password" placeholder="your password" name="password"required>
 
-<br>
-    </form>
+            </div>
+            <button class="registerSubmit" type="submit">Sign up</button>
+            <div class="passwordNotice">
+                Please note passwords are stored securely
+                using hashing, salting, and Bcrypt.
+            </div>
 
-    {{#if errorMessage}}
+            <br>
+        </form>
 
-    <p id="error">
-        The email address is already registered, please log-in instead!
-    </p>
-    {{/if}}
+        {{#if errorMessage}}
+
+        <p id="error">
+            The email address is already registered, please log-in instead!
+        </p>
+        {{/if}}
 </div>

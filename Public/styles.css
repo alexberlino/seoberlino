@@ -278,6 +278,16 @@ span {
 .deleteSign:hover {
     color: #44929f;
 }
+
+#secondcolumn {
+    display: inline;
+    position: relative;
+}
+
+#firstcolumn {
+    display: inline;
+    position: relative;
+}
 /* .canal {
     background: url("canal.png") no-repeat;
     display: inline-block;
