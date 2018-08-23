@@ -31,7 +31,7 @@ app.use(
 
 app.get("/profile", (req, res) => {
     res.render("profile", {
-        layout: "petition"
+        layout: "petitionProfile"
     });
 });
 

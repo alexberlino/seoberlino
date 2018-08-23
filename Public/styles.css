@@ -3,6 +3,19 @@
     font-family: arial;
 }
 
+.w3-animate-fading {
+    animation: show 0.8s;
+    animation-fill-mode: forwards; // means stop at the last status when animation finished
+}
+@keyframes show {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 .description {
     margin: 15px;
     width: 50%;
@@ -137,7 +150,7 @@ a:hover {
 }
 
 nav {
-    background-color: rgba(72, 209, 204, 0.1);
+    background-color: rgba(72, 209, 204, 0);
     margin-bottom: 10px;
     padding: 10px;
     top: 0;
@@ -178,8 +191,8 @@ nav a:hover {
 }
 
 .nav {
-    padding: 4px;
-    margin: 3px;
+    padding: 7px;
+    margin: 6px;
     width: 10px;
     background-color: #44929f;
 }
