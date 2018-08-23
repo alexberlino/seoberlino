@@ -122,8 +122,7 @@ app.post("/login", (req, res) => {
             if (!result) {
                 throw new Error();
             } else {
-                return db
-                    .checkPass(req.body.password, result.rows[0].password)
+                return checkPass(req.body.password, result.rows[0].password)
                     .then(function(doesMatch) {
                         if (doesMatch) {
                             req.session.userId = result.rows[0].id;
