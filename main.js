@@ -116,26 +116,41 @@ app.post("/profile/edit", (req, res) => {
         });
 });
 
-app.post("/profile", (req, res) => {
-    console.log(
-        req.session.userId,
-        req.body.age,
-        req.body.city,
-        req.body.personalweb
-    );
-    return db
-        .addProfileToDb(
-            req.session.userId,
-            req.body.age,
-            req.body.city,
-            req.body.personalweb
-        )
+app.post("/login", (req, res) => {
+    db.getUserForLogin(req.body.emailaddress)
         .then(function(result) {
-            console.log(result);
+            if (!result) {
+                throw new Error();
+            } else {
+                return db
+                    .checkPass(req.body.password, result.rows[0].password)
+                    .then(function(doesMatch) {
+                        if (doesMatch) {
+                            req.session.userId = result.rows[0].id;
+                            req.session.firstname = result.rows[0].firstname;
+                            req.session.surname = result.rows[0].surname;
+                        } else {
+                            throw new Error();
+                        }
+                    })
+                    .then(function() {
+                        return db
+                            .checkSign(req.session.userId)
+                            .then(function(response) {
+                                if (response == undefined) {
+                                    res.redirect("/");
+                                } else {
+                                    req.session.checked = result.rows[0].id;
+                                    res.redirect("/thankyou");
+                                }
+                            });
+                    });
+            }
         })
-        .catch(function() {
-            console.log("error");
-            res.render("profile", {
+
+        .catch(function(e) {
+            console.log("error catch" + e);
+            res.render("login", {
                 layout: "petitionLog",
                 errorMessage: true
             });
@@ -152,48 +167,6 @@ app.get("/login", checkSignedIn, function(req, res) {
 
 // const emailaddress = req.body.emailaddress;
 // let password = req.body.password;
-app.post("/login", (req, res) => {
-    db.getUserForLogin(req.body.emailaddress)
-        .then(function(result) {
-            return checkPass(req.body.password, result.rows[0].password)
-                .then(function(doesMatch) {
-                    if (doesMatch) {
-                        console.log(
-                            "USER ID:" + result.rows[0].id,
-                            "FIRSTNAME:" + result.rows[0].firstname,
-                            "SURNAME:" + result.rows[0].surname
-                        );
-                        req.session.userId = result.rows[0].id;
-                        req.session.firstname = result.rows[0].firstname;
-                        req.session.surname = result.rows[0].surname;
-                    }
-                })
-                .then(function() {
-                    return db
-                        .checkSign(req.session.userId)
-                        .then(function(response) {
-                            console.log("sign:", response);
-                            if (response == undefined) {
-                                res.redirect("/");
-                            } else {
-                                req.session.checked = result.rows[0].id;
-                                res.redirect("/thankyou");
-                            }
-                        })
-                        .catch(function(e) {
-                            console.log("error catch" + e);
-                            res.redirect("/");
-                        });
-                });
-        })
-        .catch(function(e) {
-            console.log("error catch" + e);
-            res.render("login", {
-                layout: "petitionLog",
-                errorMessage: true
-            });
-        });
-});
 
 /////////////////login///////////////////////////
 

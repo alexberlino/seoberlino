@@ -24,10 +24,12 @@ form {
     display: inline;
 }
 
-.lemonpic {
+.ThankYouLinks {
     display: inline-block;
     position: absolute;
-    left: 40%;
+    left: 5%;
+    width: 40%;
+    padding: 30px;
 }
 .regLine {
     display: inline-block;
@@ -89,7 +91,7 @@ h3 {
     font-family: "Orienta", sans-serif;
     letter-spacing: 1px;
     font-style: italic;
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 #error {
@@ -186,7 +188,10 @@ input {
     display: block;
     margin-left: 30%;
     margin-bottom: 13px;
-    border: 1px #ddc963 dotted;
+    border: 3px darkgrey solid;
+    height: 17px;
+    width: 170px;
+    font-size: 14px;
 }
 
 .registerSubmit {
@@ -214,14 +219,12 @@ input {
     background-color: lightgrey;
 }
 footer {
-    font-size: 12px;
+    font-size: 8px;
     position: fixed;
     bottom: 0;
-
     width: 100%;
-    padding-left: 300px;
-    padding-right: 300px;
-    z-index: 300;
+    left: 85%;
+    margin-right: 80px;
 }
 
 .instructions {

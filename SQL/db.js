@@ -230,3 +230,11 @@ module.exports.infosForEditNoProf = function(user_id) {
             return results.rows[0];
         });
 };
+
+module.exports.checkEmailReg = function(emailaddress) {
+    return db
+        .query(`SELECT * FROM users WHERE emailaddress = $1`, [emailaddress])
+        .then(results => {
+            return results.rows[0];
+        });
+};
