@@ -406,8 +406,17 @@ app.get("/aboutus", checkSignedIn, function(req, res) {
         layout: "petitionLog"
     });
 });
-
+app.get("/aboutus2", checkSignedIn, function(req, res) {
+    res.render("about", {
+        layout: "petitionLog"
+    });
+});
 app.get("/contactus", checkSignedIn, function(req, res) {
+    res.render("contact", {
+        layout: "petitionLog"
+    });
+});
+app.get("/contactus2", checkSignedIn, function(req, res) {
     res.render("contact", {
         layout: "petitionLog"
     });

@@ -1,19 +1,13 @@
 * {
-    background-color: #c1bdb4;
+    background-color: none;
     font-family: arial;
 }
 
-.w3-animate-fading {
-    animation: show 0.8s;
-    animation-fill-mode: forwards; // means stop at the last status when animation finished
-}
-@keyframes show {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+.fade {
+    -webkit-animation: fade 5s;
+    animation: fade 5s;
+    -moz-animation: fade 5s;
+    -o-animation: fade 5s;
 }
 
 .description {
@@ -87,7 +81,7 @@ h6 {
 }
 
 h3 {
-    z-index: 30;
+    z-index: 300;
     position: relative;
     text-align: center;
     position: -webkit-sticky;
@@ -96,8 +90,8 @@ h3 {
     position: -o-sticky;
     position: sticky;
     top: 0px;
-    color: #343434;
-    font-size: 22px;
+    */color: #343434;
+    font-size: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
     font-weight: normal;
@@ -232,7 +226,7 @@ input {
     background-color: lightgrey;
 }
 footer {
-    font-size: 8px;
+    font-size: 13px;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -266,8 +260,10 @@ footer {
 span {
     word-wrap: break-word;
     display: block;
-    z-index: 10;
+
     position: relative;
+    padding: 50px;
+    margin: 50px;
 }
 
 .back {
@@ -309,12 +305,12 @@ span {
     margin-top: 14%;
     margin-bottom: 10%;
     color: white;
-    postiion: absolute;
     position: fixed;
+    padding-bottom: 15px;
 }
 
 .titleReg {
-    font-size: 40px;
+    font-size: 25px;
     margin-bottom: 5px;
     color: white;
 }
@@ -328,3 +324,48 @@ span {
 .canal:hover {
     background: url("canalswimming.jpeg") no-repeat;
 } */
+
+@media (max-width: 600px) {
+    .titleReg {
+        font-size: 30px;
+        margin-bottom: 5px;
+        color: white;
+    }
+
+    .registermain {
+        background-color: darkgrey;
+
+        margin-left: 10%;
+        margin-left: 10%;
+        margin-top: 14%;
+        margin-bottom: 10%;
+        width: 80%;
+        font-size: 30px;
+        color: white;
+        position: relative;
+    }
+
+    footer {
+        font-size: 8px;
+    }
+    label {
+        font-size: 15px;
+    }
+    .passwordNotice {
+        left: 22%;
+        font-size: 13px;
+        position: relative;
+        font-style: italic;
+        border: solid 1px white;
+        margin-top: 10px;
+        width: 100%;
+        color: black;
+        padding: 2px;
+        background-color: lightgrey;
+    }
+    span {
+        font-size: 12px;
+        padding: 10px;
+        margin: 10px;
+    }
+}

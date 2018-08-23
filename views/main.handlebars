@@ -1,49 +1,67 @@
 
-<div class ="description2">
+
+<style>
 
 
-    <h3> Make the Berlin canals swimmable again!! </h3>
+html {
+    background: url("canalswimming.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 1;
 
-    <p>
-        Only a few years ago during the summer, Berliners would use the city's canals
-        to have a swim. <br>But in the last few years, this has become impossible. <br><br>
-        Sign the petition today to put pressure on local authorities so they at last <br>
-        start taking care of the precious natural environment in the city!
-    </p>
-    <form method="POST">
+}
 
-        <div class="signPet">
+.registermain{
+    background-color: darkgrey;
 
-            <input class= "inputPetition" type="hidden" name ="signature" id="sig">
-            <p class="instructions">please sign below</p>
-            <canvas class= "inputPetition" id="canvas" width="280" height="100"></canvas>
-
-
-            <button> Submit </button>
-        </div>
-
-
-
-
-    </form>
+text-align: center;
+    margin-left: 20%;
+    margin-top: 14%;
+    margin-bottom: 10%;
+    width: 60%;
+    font-size: 30px;
+    color: black;
+    position: relative;
+}
 
 
-    <div class="canalimages">
 
-        <img src="canal.png" height=150px width=250px>
-        <img src="canalswimming.jpg" height=150px width=250px >
-
-
-    </div>
+}
+</style>
 
 
-    {{#if errorMessage}}
-    <p id="error">
-        Error! Please review your input and make sure all fields are completed.
-    </p>
-    </div>
+<div class="registermain">
+    <br>
 
-    {{/if}}
+
+    <h3 class="titleReg"> MAKE BERLIN CANALS <br> CLEAN AGAIN <br>
+        </h3>
+        <h3> Make the Berlin canals swimmable again!! </h3>
+
+        <p>
+            Only a few years ago during the summer, Berliners would use the city's canals
+            to have a swim. <br>But in the last few years, this has become impossible. <br><br>
+            Sign the petition today to put pressure on local authorities so they at last <br>
+            start taking care of the precious natural environment in the city!
+        </p>
+        <form method="POST">
+
+            <div class="signPet">
+
+                <input class= "inputPetition" type="hidden" name ="signature" id="sig">
+                <p class="instructions">please sign below</p>
+                <canvas class= "inputPetition" id="canvas" width="280" height="100"></canvas>
+
+
+                <button> Submit </button>
+            </div>
+
+
+
+
+        </form>
 </div>
 
 
