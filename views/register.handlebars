@@ -1,10 +1,49 @@
 
+<style>
+
+* {
+
+    background: none;
+}
+    html {
+     background: url("canalmain.jpg") no-repeat center center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+
+   }
+
+.registermain {
+
+    background-color: rgba(255,255,255, 0.8);
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 10%;
+    color: white;
+    postiion: relative;
+
+}
+
+.titleReg {
+
+    font-size: 40px;
+    font-family: arial;
+    margin-bottom: 5px;
+}
 
 
+</style>
+
+
+<br><br><br>
 
 <div class="registermain">
+    <br>
 
-    <h3> Berlin canals: Join the campaign for fresh and swimmable waters </h3>
+
+    <h3 class="titleReg"> BERLIN CANALS: <br>
+        Join the campaign for fresh and swimmable waters </h3>
 
     <form method="POST" class=regLine>
 
@@ -28,7 +67,7 @@
             using hashing, salting, and Bcrypt.
         </div>
 
-
+<br>
     </form>
 
     {{#if errorMessage}}
