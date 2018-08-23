@@ -1,24 +1,77 @@
 
-<div class ="description">
+<style>
 
-<h3> If you are already registered, log in here!</h3>
+* {
 
-<form class="regLine" method="POST">
-    <label>Email</label>
-    <input type="email" placeholder="your email address" name="emailaddress"required>
+    background: none;
+}
+html {
+    background: url("canalreg.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 1;
 
-    <label>Password</label>
-    <input type="password" placeholder="your password" name="password" required>
+}
+
+.registermain {
+
+    background-color: darkgrey;
+    width: 30%;
+    heigh: 40%;
+    margin-left: 63%;
+    margin-top: 25%;
+    margin-bottom: 10%;
+        margin-right: 13%;
+    padding: 15px;
+    color: white;
+    postiion: absolute;
+    position: fixed;
+
+}
 
 
-    <button class="registerSubmit" type="submit">Log in</button>
+.titleReg {
 
-    {{#if errorMessage}}
-    <p id="error">
-        Error! The password is incorrect, or the email address not registered.<br>
-        Please check and try again.
-    </p>
-    {{/if}}
+    font-size: 40px;
+    font-family: "bariolregular";
+    margin-bottom: 5px;
+    color:white;
 
-</form>
+}
+
+
+
+
+</style>
+
+
+<br><br><br>
+
+<div class="registermain">
+    <br>
+
+
+    <h3 class="titleReg"> MAKE BERLIN CANALS <br> CLEAN AGAIN <br>
+        </h3>
+
+        <form method="POST">
+            <label>Email</label>
+            <input type="email" placeholder="your email address" name="emailaddress"required>
+
+            <label>Password</label>
+            <input type="password" placeholder="your password" name="password" required>
+
+
+            <button class="registerSubmit" type="submit">Log in</button>
+
+            {{#if errorMessage}}
+            <p id="error">
+                Error! The password is incorrect, or the email address not registered.<br>
+                Please check and try again.
+            </p>
+            {{/if}}
+
+        </form>
 </div>

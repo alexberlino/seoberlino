@@ -113,7 +113,7 @@ h3 {
 label {
     font-size: 12px;
     margin-left: 30%;
-    color: darkgreen;
+    color: white;
 }
 
 a {
@@ -188,7 +188,7 @@ input {
     display: block;
     margin-left: 30%;
     margin-bottom: 13px;
-    border: 3px darkgrey solid;
+    border: 1px white dotted;
     height: 17px;
     width: 170px;
     font-size: 14px;
@@ -302,9 +302,8 @@ span {
 
 .titleReg {
     font-size: 40px;
-    font-family: "bariolregular";
     margin-bottom: 5px;
-    color: darkgreen;
+    color: white;
 }
 /* .canal {
     background: url("canal.png") no-repeat;
