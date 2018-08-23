@@ -1,7 +1,6 @@
 const db = require("./SQL/db.js");
 const { checkPass, hashPass, capital } = require("./Public/hash.js");
 const express = require("express");
-const ca = require("chalk-animation");
 const app = express();
 app.use(express.static("./Public"));
 app.use(express.static("./SQL"));
@@ -415,4 +414,4 @@ app.get("/contactus", checkSignedIn, function(req, res) {
 });
 
 // listening
-app.listen(process.env.PORT | 8080, () => ca.rainbow("listening"));
+app.listen(process.env.PORT || 8080, () => console.log("listening"));
