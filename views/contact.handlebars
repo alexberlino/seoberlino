@@ -14,6 +14,14 @@ html {
     opacity: 1;
 
 }
+.sendemail {
+    margin-left: 15%;
+}
+
+.address {
+    margin-left: 15%;
+    color: black;
+}
 
 
 
@@ -31,42 +39,21 @@ html {
     <h3 class="titleReg"> GET IN TOUCH! <br>
         </h3>
 
-        <div class="contact">
 
 
-            <form method="post">
+            <form  method="post">
 
                 <input type="text"  id="name" placeholder="Name" required>
 
                 <input type="email" placeholder="Email" required>
 
-                <textarea rows="10" cols="70" placeholder="Message" required></textarea>
+                <textarea class="sendemail" rows="10" cols="40" placeholder="Message" required></textarea>
 
                 <button>Send it!</button>
             </form>
+            <p class="address">
+                Falckensteinstraße 49, 10997 Berlin <br>
+                Email: freshwatercanals@canalsberlin.com <br>
+                Tel: 030 3433 54366 <br>
+                Mon-Fri 8am - 3pm
         </div>
-        <div>
-
-            {{#if thanksMessage}}
-            <p id="error">
-                Error! Please review your input and make sure all fields are completed.
-            </p>
-
-                    {{/if}}
-            {{#if errorMessage}}
-            <p id="error">
-                Error! Please review your input and make sure all fields are completed.
-            </p>
-
-
-            {{/if}}
-        </div>
-        <br><br><br><br><br><br>
-        <p>
-            Falckensteinstraße 49, 10997 Berlin <br>
-            Email: freshwatercanals@canalsberlin.com <br>
-            Tel: 030 3433 54366 <br>
-            Mon-Fri 8am - 3pm
-
-</p>
-    </div>
