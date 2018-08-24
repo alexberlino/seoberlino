@@ -28,8 +28,16 @@ document.addEventListener("mouseup", function() {
     sig.value = canvas.toDataURL();
 });
 
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
 canvas.addEventListener("touchstart", function(e) {
     e.stopPropagation();
+    e.preventDefault();
     x = e.offsetX;
     y = e.offsetY;
     canvas.addEventListener(
@@ -48,23 +56,3 @@ document.addEventListener("touchend", function() {
     canvas.removeEventListener("touchmove", move);
     sig.value = canvas.toDataURL();
 });
-
-// // When the user scrolls the page, execute myFunction
-// window.onscroll = function() {
-//     myFunction();
-// };
-//
-// // Get the navbar
-// var nav = document.getElementsByName("nav");
-//
-// // Get the offset position of the navbar
-// var sticky = nav.offsetTop;
-//
-// // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-// function myFunction() {
-//     if (window.pageYOffset >= sticky) {
-//         nav.classList.add("sticky");
-//     } else {
-//         nav.classList.remove("sticky");
-//     }
-// }
