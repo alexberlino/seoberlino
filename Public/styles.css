@@ -192,7 +192,7 @@ input {
 }
 
 .registerSubmit {
-    margin-left: 20%;
+    margin-left: 40%;
 }
 
 .profileSubmit {
@@ -322,12 +322,11 @@ span {
 
     .registermain {
         background-color: darkgrey;
-
-        margin-left: 5%;
-        margin-right: 5%;
+        margin-left: 3%;
+        margin-right: 3%;
         margin-top: 14%;
         margin-bottom: 10%;
-        width: 70%;
+        width: 75%;
         font-size: 28px;
         color: white;
         position: relative;
@@ -338,10 +337,9 @@ span {
         font-size: 8px;
     }
     label {
-        font-size: 13px;
+        font-size: 10px;
     }
     .passwordNotice {
-        left: 22%;
         font-size: 13px;
         position: relative;
         font-style: italic;
@@ -349,7 +347,7 @@ span {
         margin-top: 10px;
         width: 100%;
         color: black;
-        padding: 2px;
+        padding: 1px;
         background-color: lightgrey;
     }
     span {
