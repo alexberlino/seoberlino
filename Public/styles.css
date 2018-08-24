@@ -10,22 +10,6 @@
     -o-animation: fade 5s;
 }
 
-.description {
-    margin: 15px;
-    width: 50%;
-    top: 0px;
-    left: 30%;
-    position: absolute;
-}
-
-.description2 {
-    margin: 15px;
-    width: 70%;
-    top: 0px;
-    left: 20%;
-    position: absolute;
-}
-
 form {
     margin-top: 20px;
     display: inline;
@@ -273,11 +257,6 @@ span {
     height: 30px;
     border: white 2px solid;
 }
-.canalimages {
-    display: in-line;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
 
 .deleteSign {
     background: rgba(0, 0, 0, 0);
@@ -289,18 +268,8 @@ span {
     color: #44929f;
 }
 
-#secondcolumn {
-    display: inline;
-    position: relative;
-}
-
-#firstcolumn {
-    display: inline;
-    position: relative;
-}
-
 .registermain {
-    background-color: darkgrey;
+    background-color: rgba(160, 160, 160, 0.4);
     margin-left: 63%;
     margin-top: 12%;
     margin-bottom: 10%;
@@ -328,7 +297,7 @@ span {
     }
 
     .registermain {
-        background-color: darkgrey;
+        background-color: rgba(160, 160, 160, 0.6);
         margin-left: 3%;
         margin-right: 3%;
         margin-top: 0;
