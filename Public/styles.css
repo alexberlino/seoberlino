@@ -330,7 +330,7 @@ span {
         width: 70%;
         font-size: 28px;
         color: white;
-        position: fixed;
+        position: relative;
         overflow: scroll;
     }
 
