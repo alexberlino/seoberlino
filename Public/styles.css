@@ -334,6 +334,10 @@ span {
         color: black;
     }
 
+    .contact {
+        color: black;
+    }
+
     nav {
         background-color: rgba(160, 160, 160, 0.4);
         width: auto;
