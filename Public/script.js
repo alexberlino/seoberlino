@@ -28,6 +28,27 @@ document.addEventListener("mouseup", function() {
     sig.value = canvas.toDataURL();
 });
 
+canvas.addEventListener("touchstart", function(e) {
+    e.stopPropagation();
+    x = e.offsetX;
+    y = e.offsetY;
+    canvas.addEventListener(
+        "touchmove",
+        (move = function(e) {
+            content.moveTo(x, y);
+            x = e.offsetX;
+            y = e.offsetY;
+            content.lineTo(x, y);
+            content.stroke();
+        })
+    );
+});
+
+document.addEventListener("touchend", function() {
+    canvas.removeEventListener("touchmove", move);
+    sig.value = canvas.toDataURL();
+});
+
 // // When the user scrolls the page, execute myFunction
 // window.onscroll = function() {
 //     myFunction();

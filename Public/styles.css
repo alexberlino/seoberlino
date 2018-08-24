@@ -192,7 +192,7 @@ input {
 }
 
 .registerSubmit {
-    margin-left: 40%;
+    margin-left: 20%;
 }
 
 .profileSubmit {
@@ -259,7 +259,7 @@ span {
     position: sticky;
     position: fixed;
     z-index: 10;
-    width: 35%;
+    width: 55%;
     height: 5%;
     margin-left: 7%;
     margin-right: 7%;
@@ -316,7 +316,7 @@ span {
 @media (max-width: 750px) {
     .titleReg {
         font-size: 20px;
-        margin-bottom: 5px;
+        margin-bottom: 2px;
         color: white;
     }
 
@@ -324,7 +324,7 @@ span {
         background-color: darkgrey;
         margin-left: 3%;
         margin-right: 3%;
-        margin-top: 14%;
+        margin-top: 0;
         margin-bottom: 10%;
         width: 75%;
         font-size: 28px;
@@ -362,7 +362,7 @@ span {
 
         padding: 10px;
         top: 0;
-
+        margin-bottom: 0;
         position: fixed;
         width: auto;
         z-index: 100;
