@@ -28,20 +28,12 @@ document.addEventListener("mouseup", function() {
     sig.value = canvas.toDataURL();
 });
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-
-canvas.addEventListener("touchstart", function(e) {
+canvas.addEventListener("mousedown", function(e) {
     e.stopPropagation();
-    e.preventDefault();
     x = e.offsetX;
     y = e.offsetY;
     canvas.addEventListener(
-        "touchmove",
+        "mousemove",
         (move = function(e) {
             content.moveTo(x, y);
             x = e.offsetX;
@@ -52,7 +44,39 @@ canvas.addEventListener("touchstart", function(e) {
     );
 });
 
-document.addEventListener("touchend", function() {
-    canvas.removeEventListener("touchmove", move);
-    sig.value = canvas.toDataURL();
-});
+window.alert = function(title, message) {
+    var myElementToShow = document.getElementById("deleteSign");
+    myElementToShow.innerHTML = title + "</br>" + message;
+};
+
+function sendMail() {
+    var link =
+        "mailto:me@example.com" +
+        "?cc=myCCaddress@example.com" +
+        "&subject=" +
+        escape("This is my subject") +
+        "&body=" +
+        escape(document.getElementById("myText").value);
+
+    window.location.href = link;
+}
+
+// // When the user scrolls the page, execute myFunction
+// window.onscroll = function() {
+//     myFunction();
+// };
+//
+// // Get the navbar
+// var nav = document.getElementsByName("nav");
+//
+// // Get the offset position of the navbar
+// var sticky = nav.offsetTop;
+//
+// // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+// function myFunction() {
+//     if (window.pageYOffset >= sticky) {
+//         nav.classList.add("sticky");
+//     } else {
+//         nav.classList.remove("sticky");
+//     }
+// }

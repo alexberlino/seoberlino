@@ -28,12 +28,14 @@ html {
         width: 55%;
         font-size: 25px;
         color: white;
-        position: relative;
+        position: fixed;
         overflow: scroll;
     }
 
 
-
+input {
+    cols
+}
 
 
 
@@ -67,13 +69,14 @@ html {
 
 
             <button class="registerSubmit" type="submit">Sign up</button>
-            <div class="passwordNotice">
-                Please note passwords are stored securely
-                using hashing, salting, and Bcrypt.
-            </div>
+
 
             <br>
         </form>
+        <div class="passwordNotice">
+            Please note passwords are stored securely
+            using hashing, salting, and Bcrypt.
+        </div>
 
         {{#if errorMessage}}
 

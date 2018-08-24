@@ -23,8 +23,17 @@ html {
     position: fixed;
 }
 
-
-
+@media (max-width: 750px) {
+    .registermain{
+        text-align: center;
+        margin-left: 5%;
+        margin-top: 5%;
+        margin-bottom: 15%;
+        width: 80%;
+        font-size: 12px;
+        color: black;
+        position: fixed;
+    }
 
 </style>
 
@@ -46,7 +55,7 @@ html {
 
     </div>
 
-    <div>
+    <div class="thankyoutext">
 
             If we succeed, we will soon be able to swim again in a clean canal, junk-free!!
 
@@ -64,7 +73,8 @@ html {
         <a href="/profile/edit">Edit your profile</a> <br>
         <form method="POST">
 
-            <button class="deleteSign" type="submit">Delete your signature</button>
+            <button class="deleteSign"  type="submit" onclick="return confirm('Are you sure you want to delete your signature?');">Delete your signature
+
         </form>
 
 
