@@ -85,7 +85,7 @@ h3 {
     padding-top: 1px;
     padding-bottom: 5px;
     font-weight: normal;
-    font-family: "Orienta", sans-serif;
+    font-family: "bariolregular", sans-serif;
     letter-spacing: 1px;
     font-style: italic;
 }
@@ -193,7 +193,7 @@ input {
 }
 
 .profileSubmit {
-    margin-left: 20%;
+    margin-left: 65%;
 }
 
 .inputPetition {
@@ -310,9 +310,9 @@ span {
     color: white;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
     .titleReg {
-        font-size: 30px;
+        font-size: 20px;
         margin-bottom: 5px;
         color: white;
     }
@@ -355,13 +355,6 @@ span {
         color: black;
     }
 
-    .sendemail {
-        margin-left: 10px;
-    }
-
-    .address {
-        margin-left: 10px;
-    }
     nav {
         background-color: rgba(72, 209, 204, 0);
         margin-bottom: 10px;
