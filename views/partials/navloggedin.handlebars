@@ -1,8 +1,22 @@
 
-<nav>
+<nav id="myTopnav" class="topnav">
+    <a href="javascript:void(0);" class="icon" onclick="nav()">
+
 <a class="nav" href="/">PETITION</a>
  <a class="nav" href="/about">ABOUT</a>
   <a class="nav" href="/contact">CONTACT</a>
   <a class="nav" href="/logout">EXIT</a>
   <a class="nav" href="/profile/edit">PROFILE</a>
+     <i class="fa fa-bars"></i>
+   </a>
 </nav>
+<script>
+    function nav() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>

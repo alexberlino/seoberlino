@@ -144,6 +144,9 @@ nav {
         -0px 0px 0px #00bdbd;
 }
 
+nav .icon {
+    display: none;
+}
 nav a:link {
     color: white;
     font-family: sans-serif;
@@ -320,21 +323,22 @@ span {
     .registermain {
         background-color: darkgrey;
 
-        margin-left: 10%;
-        margin-left: 10%;
+        margin-left: 5%;
+        margin-right: 5%;
         margin-top: 14%;
         margin-bottom: 10%;
-        width: 80%;
-        font-size: 30px;
+        width: 70%;
+        font-size: 28px;
         color: white;
-        position: relative;
+        position: fixed;
+        overflow: scroll;
     }
 
     footer {
         font-size: 8px;
     }
     label {
-        font-size: 15px;
+        font-size: 13px;
     }
     .passwordNotice {
         left: 22%;
@@ -357,16 +361,48 @@ span {
 
     nav {
         background-color: rgba(72, 209, 204, 0);
-        margin-bottom: 10px;
-        padding: 1px;
+
+        padding: 10px;
         top: 0;
-        left: 2px;
-        font-size: 7px;
-        text-align: left;
+
         position: fixed;
-        width: 100%;
+        width: auto;
         z-index: 100;
         text-shadow: -0px 1px 0px #00e6e6, -0px 0px 0px #01cccc,
             -0px 0px 0px #00bdbd;
+    }
+
+    nav a {
+        display: none;
+    }
+
+    nav a.icon {
+        float: left;
+        display: block;
+    }
+
+    nav.responsive {
+        position: relative;
+    }
+    nav.responsive a.icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    nav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 20%;
+    }
+    input {
+        display: block;
+        margin-left: 20%;
+        margin-bottom: 5px;
+        border: 1px white dotted;
+        height: 17px;
+        width: 140px;
+        font-size: 14px;
+        padding-right: 4px;
     }
 }
