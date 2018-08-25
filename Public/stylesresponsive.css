@@ -118,12 +118,8 @@
         font-size: 11px;
     }
 
-    h3 {
-        top: -2px;
-    }
     .h3head {
         background-color: rgba(68, 146, 159, 0.9);
-        padding: 10px;
         position: -webkit-sticky;
         position: -moz-sticky;
         position: -ms-sticky;
@@ -131,10 +127,9 @@
         position: sticky;
         position: fixed;
         z-index: 10;
-        width: 65%;
-        height: 9%;
-        margin-left: 2%;
-        margin-right: 2%;
+        width: 75%;
+        height: 7%;
+        rigth: 30px;
     }
 
     .signature {

@@ -55,7 +55,7 @@ h3 {
     position: -ms-sticky;
     position: -o-sticky;
     position: sticky;
-    top: -20px;
+    top: 5px;
     color: #343434;
     font-size: 15px;
     padding-bottom: 5px;
@@ -235,7 +235,6 @@ span {
 
 .h3head {
     background-color: rgba(68, 146, 159, 0.9);
-    padding: 1px;
     position: -webkit-sticky;
     position: -moz-sticky;
     position: -ms-sticky;
@@ -243,10 +242,8 @@ span {
     position: sticky;
     position: fixed;
     z-index: 10;
-    width: 46%;
-    height: 8%;
-    margin-left: 2%;
-    margin-right: 7%;
+    width: 55%;
+    height: 6%;
 }
 .back {
     margin-top: 30px;
