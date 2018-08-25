@@ -10,11 +10,12 @@ html {
     background-size: cover;
     opacity: 1;
 
+
 }
 
 .registermain{
     background-color: rgba(160, 160, 160, 0.8);
-
+    overflow-y:  scroll;
     text-align: center;
     margin-left: 20%;
     margin-top: 10%;
@@ -25,6 +26,16 @@ html {
     position: fixed;
 }
 
+@media (max-width: 750px) {
+
+    .registermain {
+            width: 85%;
+            right: 2%;
+
+
+
+    }
+}
 
 
 
@@ -33,9 +44,9 @@ html {
 <div class ="registermain">
     <h3 class="titleReg"> Hall of Fame! </h3>
 
-
+    <p class ="buddytext">
     Thank you to all of you who all want to make the waters of Berlin fresh and clean to
-    swim in!
+    swim in! </p>
     <div class="list" >
         {{#signs}}
         <li> {{#if website}}<a href="{{website}}" target="_blank">{{firstname}} {{surname}}</a>,

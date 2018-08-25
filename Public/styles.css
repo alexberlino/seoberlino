@@ -37,8 +37,9 @@ button {
 }
 
 p {
-    font-size: 13px;
+    font-size: 15px;
     display: block;
+    margin: 4px;
 }
 
 h6 {
@@ -48,6 +49,7 @@ h6 {
 
 h3 {
     z-index: 300;
+    background-color: rgba(68, 146, 159, 0.9);
     position: relative;
     text-align: center;
     position: -webkit-sticky;
@@ -55,14 +57,13 @@ h3 {
     position: -ms-sticky;
     position: -o-sticky;
     position: sticky;
-    top: 5px;
+    top: 1px;
     color: #343434;
     font-size: 15px;
     padding-bottom: 5px;
     font-weight: normal;
     font-family: "bariolregular", sans-serif;
     letter-spacing: 1px;
-    font-style: italic;
 }
 
 #error {
@@ -106,6 +107,7 @@ a:hover {
 nav {
     margin-bottom: 10px;
     padding: 10px;
+    font-family: "bariolregular", sans-serif;
     top: 4px;
     left: 10px;
     font-size: 15px;
@@ -245,6 +247,7 @@ span {
     width: 55%;
     height: 6%;
 }
+
 .back {
     margin-top: 30px;
     background-color: rgba(68, 146, 159);
