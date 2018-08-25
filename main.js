@@ -387,38 +387,35 @@ app.get("/about", checkNotSignedIn, function(req, res) {
     });
 });
 
+app.get("/aboutus", function(req, res) {
+    res.render("about", {
+        layout: "petitionLog"
+    });
+});
+
 app.get("/contact", checkNotSignedIn, function(req, res) {
     res.render("contact", {
         layout: "petition"
     });
 });
 
-app.post("/contact", checkNotSignedIn, function(req, res) {
-    console.log("yes");
+app.get("/contactus", function(req, res) {
     res.render("contact", {
-        layout: "petition",
-        thanksMessage: true
+        layout: "petitionLog"
     });
 });
 
-app.get("/aboutus", checkSignedIn, function(req, res) {
-    res.render("about", {
-        layout: "petitionLog"
-    });
-});
-app.get("/aboutus2", checkSignedIn, function(req, res) {
-    res.render("about", {
-        layout: "petitionLog"
-    });
-});
-app.get("/contactus", checkSignedIn, function(req, res) {
+app.post("/contactus", function(req, res) {
     res.render("contact", {
-        layout: "petitionLog"
+        layout: "petitionLog",
+        ThanksMessage: true
     });
 });
-app.get("/contactus2", checkSignedIn, function(req, res) {
+
+app.post("/contact", function(req, res) {
     res.render("contact", {
-        layout: "petitionLog"
+        layout: "petition",
+        ThanksMessage: true
     });
 });
 

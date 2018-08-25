@@ -179,6 +179,14 @@ input {
     margin-left: 20%;
 }
 
+.thanks {
+    color: green;
+    font-size: 14px;
+    text-align: centre;
+    position: relative;
+    margin-left: 10%;
+}
+
 .profileSubmit {
     margin-left: 65%;
 }

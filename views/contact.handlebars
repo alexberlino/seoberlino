@@ -69,11 +69,11 @@ width:    }
 
             <form method="post">
 
-                <input class="contact" type="text"  id="name" placeholder="Name" required>
+                <input type="text"  id="name" placeholder="Name" required>
 
-                <input class="contact" type="email" placeholder="Email" required>
+                <input type="email" placeholder="Email" required>
 
-                <textarea class="contact" rows="10" cols="30" placeholder="Message" required></textarea>
+                <textarea  rows="8" cols="30" placeholder="Message" required></textarea>
 
 
 
@@ -84,4 +84,12 @@ width:    }
                 Email: freshwatercanals@canalsberlin.com <br>
                 Tel: 030 3433 54366 <br>
                 Mon-Fri 8am - 3pm
+            </p>
+
+            {{#if ThanksMessage}}
+            <p class="thanks">
+                thanks for your message!
+            </p>
+            {{/if}}
+
         </div>
