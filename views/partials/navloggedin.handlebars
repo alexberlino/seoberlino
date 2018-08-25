@@ -6,7 +6,6 @@
   <a class="nav" href="/logout">LOG-OUT</a>
   <a class="nav" href="/profile/edit">PROFILE</a>
   <a href="#" class="icon">
-
      <i class="fa fa-bars"></i>
    </a>
 </nav>
@@ -15,7 +14,7 @@
 
 $(".icon").click(function nav() {
 
-        var x = document.getElementById("myTopnav");
+        var x = $("#myTopnav")[0];
         if (x.className === "topnav") {
             x.className += " responsive";
         } else {

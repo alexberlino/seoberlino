@@ -1,12 +1,11 @@
 
 <nav id="myTopnav" class="topnav">
-
 <a class="nav" href="/register">REGISTER</a>
 <a class="nav" href="/login">LOG-IN</a>
 <a class="nav" href="/aboutus">ABOUT</a>
 <a class="nav" href="/contactus">CONTACT</a>
 <a href="#" class="icon">
-   <i class="fas fa-bars"></i>
+   <i class="fa fa-bars"></i>
  </a>
 
 </nav>
@@ -16,13 +15,13 @@
 
 $(".icon").click(function nav() {
 
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
+var x = $("#myTopnav")[0];
+if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
             x.className = "topnav";
-        }
-    });
+    }
+});
 
 
 </script>
