@@ -122,26 +122,26 @@ nav .icon {
 }
 nav a:link {
     color: white;
-    font-family: sans-serif;
+    font-family: "bariolregular", sans-serif;
     text-decoration: none;
 }
 
 nav a:visited {
     text-align: right;
     color: white;
-    font-family: sans-serif;
+    font-family: "bariolregular", sans-serif;
     text-decoration: none;
 }
 
 nav a:active {
     color: white;
-    font-family: sans-serif;
+    font-family: "bariolregular", sans-serif;
     text-decoration: none;
 }
 
 nav a:hover {
     color: #44929f;
-    font-family: sans-serif;
+    font-family: "bariolregular", sans-serif;
     text-decoration: none;
     background-color: lightgrey;
 }
