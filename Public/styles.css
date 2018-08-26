@@ -1,5 +1,5 @@
 * {
-    font-family: arial;
+    font-family: bariolregular;
 }
 
 form {
@@ -57,12 +57,10 @@ h3 {
     position: -ms-sticky;
     position: -o-sticky;
     position: sticky;
-    top: 1px;
     color: #343434;
     font-size: 15px;
     padding-bottom: 5px;
     font-weight: normal;
-    font-family: "bariolregular", sans-serif;
     letter-spacing: 1px;
 }
 
@@ -107,7 +105,7 @@ a:hover {
 nav {
     margin-bottom: 10px;
     padding: 10px;
-    font-family: "bariolregular", sans-serif;
+
     top: 4px;
     left: 10px;
     font-size: 15px;
@@ -122,26 +120,23 @@ nav .icon {
 }
 nav a:link {
     color: white;
-    font-family: "bariolregular", sans-serif;
+
     text-decoration: none;
 }
 
 nav a:visited {
     text-align: right;
     color: white;
-    font-family: "bariolregular", sans-serif;
     text-decoration: none;
 }
 
 nav a:active {
     color: white;
-    font-family: "bariolregular", sans-serif;
     text-decoration: none;
 }
 
 nav a:hover {
     color: #44929f;
-    font-family: "bariolregular", sans-serif;
     text-decoration: none;
     background-color: lightgrey;
 }
@@ -243,6 +238,7 @@ span {
     position: -o-sticky;
     position: sticky;
     position: fixed;
+    padding-left: 4px;
     z-index: 10;
     width: 55%;
     height: 6%;
