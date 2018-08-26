@@ -1,0 +1,67 @@
+
+<style>
+
+
+html {
+    background: url("/canalswimming.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 1;
+
+}
+
+.registermain{
+    background-color: rgba(160, 160, 160, 0.8);
+    overflow-y: scroll;
+    text-align: center;
+    margin-left: 20%;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    width: 60%;
+    font-size: 16px;
+    color: black;
+    position: fixed;
+}
+
+@media (max-width: 750px) {
+
+.registermain {
+        width: 85%;
+        right: 2%;
+
+
+    }
+}
+
+
+
+</style>
+<div class ="registermain">
+
+    <h3 class="titleReg"> {{city}} Hall of Fame! </h3>
+
+<p class ="buddytext">
+
+    Thank you to all of you from {{city}} who want to make the waters of Berlin fresh and clean to
+    swim in!
+
+</p>
+
+<div class="list" >
+    {{#signs}}
+    <li> {{#if website}}<a href="{{website}}" target="_blank">{{firstname}} {{surname}}</a>,
+        {{else}}
+         {{firstname}} {{surname}},
+         {{/if}}
+
+
+    {{#if age}} {{age}},  {{/if}}     {{#if city}} {{city}}{{/if}}</li>
+    {{/signs}}
+</div>
+
+
+<form action="/buddylist" >
+    <input type="submit" class="back" value="Back to the whole list">
+</form>

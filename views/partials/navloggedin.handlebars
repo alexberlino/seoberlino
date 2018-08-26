@@ -1,0 +1,26 @@
+
+<nav id="myTopnav" class="topnav">
+<a class="nav" href="/">PETITION</a>
+ <a class="nav" href="/about">ABOUT</a>
+  <a class="nav" href="/contact">CONTACT</a>
+  <a class="nav" href="/logout">LOG-OUT</a>
+  <a class="nav" href="/profile/edit">PROFILE</a>
+  <a href="#" class="icon">
+     <i class="fa fa-bars"></i>
+   </a>
+</nav>
+<script>
+
+
+$(".icon").click(function nav() {
+
+        var x = $("#myTopnav")[0];
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    });
+
+
+</script>

@@ -1,0 +1,103 @@
+
+<style>
+
+
+html {
+    background: url("canalswimming.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 1;
+
+}
+
+.registermain{
+    background-color: rgba(160, 160, 160, 0.8);
+
+    text-align: center;
+    margin-left: 20%;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    width: 60%;
+    font-size: 16px;
+    color: black;
+    position: fixed;
+}
+
+@media (max-width: 750px) {
+    .registermain{
+        background-color: rgba(160, 160, 160, 0.9);
+
+        text-align: center;
+        margin-left: 5%;
+        margin-top: 15%;
+        margin-bottom: 15%;
+        width: 80%;
+        font-size: 12px;
+        color: black;
+        position: fixed;
+    }
+    }
+
+</style>
+
+
+<div class="registermain">
+
+
+
+
+    <h3 class="titleReg"> Thank you {{firstname}}, your signature counts! </h3>
+
+
+
+
+    <div class ="signature">
+
+
+        <img src="{{userSign}}" alt="your signature" id="sigId">
+
+    </div>
+
+    <div class="thankyoutext">
+
+            If we succeed, we will soon be able to swim again in a clean canal, junk-free!!
+
+
+        <br><br><br><br>
+
+
+
+
+
+
+        <a  href="/buddylist"> Check the list of {{numberSign}} signers </a> <br>
+
+
+        <a href="/profile/edit">Edit your profile</a> <br>
+        <form method="POST">
+
+            <button class="deleteSign"  type="submit" onclick="return confirm('Are you sure you want to delete your signature?');">Delete your signature
+
+        </form>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="script.js"></script>
