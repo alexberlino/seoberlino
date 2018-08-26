@@ -77,9 +77,10 @@ h3 {
 }
 
 label {
-    font-size: 12px;
+    font-size: 15px;
     margin-left: 30%;
-    color: white;
+    color: #44929f;
+    background-color: lightgrey;
 }
 
 a {

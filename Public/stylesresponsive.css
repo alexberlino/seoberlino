@@ -25,7 +25,9 @@
         font-size: 8px;
     }
     label {
-        font-size: 8px;
+        font-size: 11px;
+        color: #44929f;
+        background-color: lightgrey;
     }
     .passwordNotice {
         font-size: 9px;
